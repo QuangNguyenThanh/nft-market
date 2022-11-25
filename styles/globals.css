@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:  'DM Sans', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.menu-item {
+  @apply block px-4 py-1.5 text-sm text-gray-700 dark:text-gray-200 m-2 rounded-lg cursor-pointer;
+}
+
+.divider {
+  @apply border-b dark:border-gray-700/80;
+}
+
+.dropdown-active {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* bar */
+.breadcrumb {
+	/*centering*/
+	display: inline-block;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+	border-radius: 5px;
+	/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
+	counter-reset: flag; 
+  margin-bottom: 15px;
+}
+
+.breadcrumb a {
+	text-decoration: none;
+	outline: none;
+	display: block;
+  text-align: center;
+	float: left;
+	font-size: 14px;
+	line-height: 36px;
+	color: white;
+	padding: 0 10px 0 60px;
+	background: #666;
+	background: linear-gradient(#666, #333);
+	position: relative;
+}
+.breadcrumb a:first-child {
+	padding-left: 46px;
+	border-radius: 5px 0 0 5px;
+}
+.breadcrumb a:first-child:before {
+	left: 14px;
+}
+.breadcrumb a:last-child {
+	border-radius: 0 5px 5px 0; 
+	padding-right: 20px;
+}
+
+/*hover/active styles*/
+.breadcrumb a.active, .breadcrumb a:hover{
+	background: #333;
+	background: linear-gradient(#333, #000);
+}
+.breadcrumb a.active:after, .breadcrumb a:hover:after {
+	background: #333;
+	background: linear-gradient(135deg, #333, #000);
+}
+
+.breadcrumb a:after {
+	content: '';
+	position: absolute;
+	top: 0; 
+	right: -18px; 
+	width: 36px; 
+	height: 36px;
+	transform: scale(0.707) rotate(45deg);
+	z-index: 1;
+	background: #666;
+	background: linear-gradient(135deg, #666, #333);
+	box-shadow: 
+		2px -2px 0 2px rgba(0, 0, 0, 0.4), 
+		3px -3px 0 2px rgba(255, 255, 255, 0.1);
+	border-radius: 0 5px 0 50px;
+}
+.breadcrumb a:last-child:after {
+	content: none;
+}
+.breadcrumb a:before {
+	content: counter(flag);
+	counter-increment: flag;
+	/*some styles now*/
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	margin: 8px 0;
+	position: absolute;
+	top: 0;
+	left: 30px;
+	/* background: #444;/ */
+	background: linear-gradient(#444, #222);
+	font-weight: bold;
+}
+
+
+.flat a, .flat a:after {
+	background: white;
+	color: black;
+	transition: all 0.5s;
+}
+.flat a:before {
+	background: white;
+	box-shadow: 0 0 0 1px #ccc;
+}
+.flat a:hover, .flat a.active, 
+.flat a:hover:after, .flat a.active:after{
+	background: #fe8d19;
+}
+
+
+/* loading */
+.logo-container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  /* a circle with 60x60 pixels */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+
+  
+}
+svg{
+  z-index: 1;
+}
+.background,
+.spinner {
+  position: absolute;
+  display: inline-block;
+ 
+  height: 100%;
+  width: 100%;
+}
+
+  .background {
+    border-radius: 50%;
+  }
+
+.logo {
+  z-index: 2;
+}
+.spinner {
+  border-radius: 50%;
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #fe8d19;
+  box-shadow: 0 -7px 7px #bea56c;
+  background-image: linear-gradient(120deg, #ff841c, #2a7b9b);
+
+  /* add spin animation */
+  animation: spin 1.4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader__overlay{
+    cursor: not-allowed! important;
+    position: absolute;
+    margin: 0px 12px;
+    z-index: 2;
+    left: 0;
+    top: 0px;
+    right: 0;
+    background-image: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* not found */
+.main{
+  margin-top: 15%;
+}
+
+.st0{fill:#fff}
+.st2{fill:#5d89af}
+.st3{fill:#709abf}
+.st4,.st6{
+  fill:#fff;
+  stroke:#b3dcdf;
+  stroke-miterlimit:10
+}
+.st6{
+  stroke:#5d89af;
+  stroke-width:2
+}
+.st7,.st8,.st9{
+  stroke:#709abf;
+  stroke-miterlimit:10
+}
+
+.st7{
+  stroke-width:5;
+  stroke-linecap:round;
+  fill:none
+}
+.st8,.st9{
+  fill:#fff
+}
+.st9{
+  fill:none
+}
+.st10{
+  
+}
+
+#cloud1{
+  animation: cloud003 15s linear infinite;
+}
+
+#cloud2{
+  animation: cloud002 25s linear infinite;
+}
+
+#cloud3{
+  animation: cloud003 20s linear infinite;
+}
+
+#cloud4{
+  animation: float 4s linear infinite;
+}
+
+#cloud5{
+  animation: float 8s linear infinite;
+}
+
+#cloud7{
+  animation: float 5s linear infinite;
+}
+
+#tracks{
+  animation: slide 650ms linear infinite;
+}
+
+#bumps{
+  animation: land 10000ms linear infinite;
+}
+
+@keyframes jig {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(1px); }
+    100% { transform: translateY(0px); }
+}
+
+#car-layers{
+  animation: jig 0.35s linear infinite;
+}
+
+@keyframes land {
+    from { transform: translateX(0); }
+    to { transform: translateX(1000px); }
+}
+
+
+@keyframes slide {
+    from { transform: translateX(0px); }
+    to { transform: translateX(100px); }
+}
+
+/* @keyframes cloudFloat {
+  0% { transform: translateX(0) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+} */
+
+@keyframes cloud001 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes cloud002 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes cloud003 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0); }
+    50% { transform: translateY(8px) translateX(5px); }
+    100% { transform: translateY(0px) translateX(0); }
+}
+
+#bracefront, #braceback{
+  animation: braces 1s linear infinite;
+}
+
+@keyframes braces {
+    0% { transform: translateX(-2px); }
+  25% { transform: translateX(3px); }
+    50% { transform: translateX(-2px); }
+    75% { transform: translateX(3px); }
+  100% { transform: translateX(-2px); }
+}
